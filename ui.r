@@ -16,13 +16,10 @@ body <- dashboardBody(
   ),
   
   fluidRow(
-    box(width = 3, tableOutput("clinic_details")),
-    box(title = "Drop-in hours", width = 3,
-        tableOutput("drop_in_hours")),
-    box(title = "Appointment hours", width = 3,
-        tableOutput("appointment_hours")),
-    box(title = "Additional services", width = 3, 
-        tableOutput("services_unique"))
+    uiOutput("clinic_details_ui"),
+    uiOutput("drop_in_hours_ui"),
+    uiOutput("appointment_hours_ui"),
+    uiOutput("services_unique_ui")
   )
 )
 

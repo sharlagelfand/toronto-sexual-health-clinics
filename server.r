@@ -58,6 +58,13 @@ function(input, output, session){
       colnames = FALSE
     )
     
+    output$clinic_details_ui <- renderUI(
+      if(!is.null(input$map_marker_click)){
+        box(width = 3,
+            tableOutput("clinic_details"))
+      }
+    )
+    
     drop_in_hours <- df %>%
       select(drop_in_hours) %>%
       unlist
@@ -82,10 +89,24 @@ function(input, output, session){
       striped = length(drop_in_hours) > 1 # only stripe the table if it's actually a table, not just the statement.
     )
     
+    output$drop_in_hours_ui <- renderUI(
+      if(!is.null(input$map_marker_click)){
+        box(title = "Drop-in hours", width = 3,
+            tableOutput("drop_in_hours"))
+      }
+    )
+    
     output$appointment_hours <- renderTable(
       appointment_hours_res,
       colnames = FALSE,
       striped = length(appointment_hours) > 1
+    )
+    
+    output$appointment_hours_ui <- renderUI(
+      if(!is.null(input$map_marker_click)){
+        box(title = "Appointment hours", width = 3,
+            tableOutput("appointment_hours"))
+      }
     )
     
     output$services_unique <- renderTable(
@@ -93,6 +114,15 @@ function(input, output, session){
       colnames = FALSE,
       striped = length(services_unique) > 1
     )
+    
+    output$services_unique_ui <- renderUI(
+      if(!is.null(input$map_marker_click)){
+        box(title = "Additional services", width = 3,
+            tableOutput("services_unique"))
+      }
+    )
+    
+
     
   })
   
