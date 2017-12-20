@@ -98,25 +98,25 @@ function(input, output, session){
   
   output$clinic_details_ui <- renderUI(
     if(!is.null(input$map_marker_click)){
-      box(width = 3,
+      box(width = 3, status = "primary", solidHeader = TRUE,
           tableOutput("clinic_details"))
     })    
   
   output$appointment_hours_ui <- renderUI(
     if(!is.null(input$map_marker_click)){
-      box(title = "Appointment hours", width = 3,
+      box(title = "Appointment hours", width = 3, solidHeader = TRUE,
           tableOutput("appointment_hours"))
     })
   
   output$services_unique_ui <- renderUI(
     if(!is.null(input$map_marker_click)){
-      box(title = "Additional services", width = 3,
+      box(title = "Additional services", width = 3, solidHeader = TRUE,
           tableOutput("services_unique"))
     })    
   
   output$drop_in_hours_ui <- renderUI(
     if(!is.null(input$map_marker_click)){
-      box(title = "Drop-in hours", width = 3,
+      box(title = "Drop-in hours", width = 3, solidHeader = TRUE,
           tableOutput("drop_in_hours"))
     })
   
