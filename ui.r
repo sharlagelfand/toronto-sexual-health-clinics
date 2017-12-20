@@ -12,16 +12,16 @@ body <- dashboardBody(
         leafletOutput("map", height = 500)),
     column(width = 4, 
            box(title = "All clinics offer:", width = NULL,
-               tableOutput("services")),
-           box(width = NULL, tableOutput("clinic_details")))
+               tableOutput("services")))
   ),
   
   fluidRow(
-    box(title = "Drop-in hours", width = 4,
+    box(width = 3, tableOutput("clinic_details")),
+    box(title = "Drop-in hours", width = 3,
         tableOutput("drop_in_hours")),
-    box(title = "Appointment hours", width = 4,
+    box(title = "Appointment hours", width = 3,
         tableOutput("appointment_hours")),
-    box(title = "Additional services", width = 4, 
+    box(title = "Additional services", width = 3, 
         tableOutput("services_unique"))
   )
 )

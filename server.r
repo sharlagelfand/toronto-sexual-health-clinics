@@ -54,7 +54,7 @@ function(input, output, session){
       filter(latitude == event$lat & longitude == event$lng)
     
     output$clinic_details <- renderTable(
-      c(df[["clinic_name"]], df[["address"]], df[["contact_number"]]) %>% t,
+      c(df[["clinic_name"]], unlist(df[["address"]]), unlist(df[["contact_number"]])),
       colnames = FALSE
     )
     
@@ -79,19 +79,19 @@ function(input, output, session){
     output$drop_in_hours <- renderTable(
       drop_in_hours_res,
       colnames = FALSE,
-      striped = length(drop_in_hours) > 0 # only stripe the table if it's actually a table, not just the statement.
+      striped = length(drop_in_hours) > 1 # only stripe the table if it's actually a table, not just the statement.
     )
     
     output$appointment_hours <- renderTable(
       appointment_hours_res,
       colnames = FALSE,
-      striped = length(appointment_hours) > 0
+      striped = length(appointment_hours) > 1
     )
     
     output$services_unique <- renderTable(
       services_unique_res,
       colnames = FALSE,
-      striped = length(services_unique) > 0
+      striped = length(services_unique) > 1
     )
     
   })
