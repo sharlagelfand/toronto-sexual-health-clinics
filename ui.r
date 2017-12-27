@@ -32,12 +32,13 @@ body <- dashboardBody(
               uiOutput("services_unique_ui")
             )
     ),
-    tabItem(tabName = "about")
+    tabItem(tabName = "about", includeMarkdown("about.md")
+    )
   )
 )
-  
-  dashboardPage(
-    header,
-    sidebar,
-    body
-  )
+
+dashboardPage(
+  header,
+  sidebar,
+  body
+)
