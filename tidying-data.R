@@ -13,7 +13,7 @@ sexual_health_clinics <- read_excel("data/Sexual Health Clinics Data Set.xlsx")
 sexual_health_clinics <- sexual_health_clinics %>%
   clean_names() %>%
   rename(drop_in_hours = operational_hours,
-         appointment_hours = na)
+         appointment_hours = x_1)
 
 sexual_health_clinics <- sexual_health_clinics[-1,]
 
@@ -61,12 +61,14 @@ services_df <- sexual_health_clinics %>%
 # get into a tidy format -- create list cols where needed, so there is only one row per clinic
 
 services_all <- sexual_health_clinics %>%
-  inner_join(services_df %>% filter(all_clinics_offer), by = "services") %>%
+  inner_join(services_df %>% 
+               filter(all_clinics_offer), by = "services") %>%
   group_by(clinic_name) %>%
-  summarise(services_all = list(services))
+  summarise(services_all = list(services[!is.na(services)]))
 
 services_unique <- sexual_health_clinics %>%
-  inner_join(services_df %>% filter(!all_clinics_offer), by = "services") %>%
+  inner_join(services_df %>% 
+               filter(!all_clinics_offer), by = "services") %>%
   group_by(clinic_name) %>%
   summarise(services_unique = list(services[!is.na(services)]))
 
